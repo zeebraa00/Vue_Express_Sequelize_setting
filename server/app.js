@@ -4,6 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const history = require('connect-history-api-fallback')
+const session = require('express-session')
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -18,6 +19,12 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(session({
+  secret: 'secret',
+  resave: true,
+  saveUninitialized: true,
+  cookie: { maxAge: 60 * 60 * 1000 }
+}));
 
 app.use('/rest', indexRouter);
 app.use('/rest/users', usersRouter);
@@ -49,10 +56,10 @@ app.use(function(err, req, res, next) {
 
 module.exports = app;
 
-/**** DB 구조 생성 ****/
+// /**** DB 구조 생성 ****/
 
-const models = require('./models');
+// const models = require('./models');
 
-models.sequelize.sync({
-  force: true
-});
+// models.sequelize.sync({
+//   force: true
+// });

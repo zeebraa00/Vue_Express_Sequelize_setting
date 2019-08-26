@@ -3,9 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "dev": "./node_modules/.bin/nodemon server/bin/www",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "build:dev": "vue-cli-service build --mode development --dest dist_dev && set NODE_ENV=development && node server/bin/www",
+    "build:dev": "vue-cli-service build --mode development --dest dist_dev && set NODE_ENV=development && ./node_modules/.bin/nodemon server/bin/www",
     "build:dist": "vue-cli-service build --mode production --dest dist && set NODE_ENV=production && node server/bin/www"
   },
   "dependencies": {
@@ -18,10 +19,12 @@
     "debug": "~2.6.9",
     "ejs": "^2.6.2",
     "express": "~4.16.1",
+    "express-session": "^1.16.2",
     "http-errors": "~1.6.3",
     "jade": "~1.11.0",
     "morgan": "~1.9.1",
     "mysql2": "^1.6.5",
+    "nodemon": "^1.19.1",
     "sequelize": "^5.16.0",
     "vue": "^2.6.10",
     "vue-router": "^3.0.3"
